@@ -1,8 +1,24 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Chemotaxis extends PApplet {
+
  Bacteria one;
  Bacteria two;//declare bacteria variables here   
  Bacteria [] colony;
  Food pie;
- void setup()   
+ public void setup()   
  {     
  	noCursor();
  	size (400,400); 
@@ -17,7 +33,7 @@
  	}
  }   
 
-void picnic()
+public void picnic()
 {
 	fill(255,0,0);
 	for(int k=20;k<400;k+=80)
@@ -30,7 +46,7 @@ void picnic()
 	
 }
 
- void draw()   
+ public void draw()   
  {    
  	fill(255,255,255,10);
  	rect(0,0,400,400);
@@ -52,10 +68,10 @@ void picnic()
  	int myX, myY;
  	Bacteria()
  	{
- 		myX = int(random(400));
- 		myY = int(random(400));
+ 		myX = PApplet.parseInt(random(400));
+ 		myY = PApplet.parseInt(random(400));
  	}
- 	void walk()
+ 	public void walk()
  	{
  		if (myX < mouseX && dist(myX,myY,mouseX,mouseY)<200)
  		{
@@ -79,7 +95,7 @@ void picnic()
  			myY = myY + (int)(Math.random()*3)-1;
  		}
  	}
- 	void show()
+ 	public void show()
  	{
  		fill(0,0,0);
  		ellipse(myX,myY,10,10);
@@ -94,7 +110,7 @@ void picnic()
  		x = mouseX;
  		y = mouseY;
  	}
- 	void show2()
+ 	public void show2()
  	{
 	 	fill(175,113,17);
 	 	ellipse(mouseX, mouseY, 100, 100);
@@ -103,3 +119,12 @@ void picnic()
  	}
  }
 
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Chemotaxis" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
